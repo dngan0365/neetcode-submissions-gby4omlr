@@ -1,0 +1,36 @@
+# class Solution:
+#     def isAnagram(self, s: str, t: str) -> bool:
+#         if len(s) != len(t):
+#             return False
+
+#         dic_s = {}
+#         dic_t = {}
+
+#         for i in range(len(s)):
+#             dic_s[s[i]] = dic_s.get(s[i], 0) + 1
+#             dic_t[t[i]] = dic_t.get(t[i], 0) + 1
+
+#         return dic_s == dic_t
+
+# class Solution: 
+#     def isAnagram(self, s: str, t: str) -> bool:
+#         if len(s) != len(t):
+#             return False
+#         return sorted(s) == sorted(t)
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        
+        count = [0]*26
+
+        for i in range(len(s)):
+            count[ord(s[i])-ord("a")] += 1
+            count[ord(t[i])-ord("a")] -= 1
+        
+        for value in count:
+            if value != 0:
+                return False
+        
+        return True
